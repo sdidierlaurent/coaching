@@ -28,7 +28,7 @@ const wheelBackground = computed(() => {
 })
 const summary = [
   { id: 'vue-ensemble', label: 'Ma semaine en couleurs' },
-  ...activityCategories.map(category => ({ id: category.id, label: category.label }))
+  ...activityCategories.map(category => ({ id: category.id, label: category.label, color: category.color }))
 ]
 
 function updateHours(activity: Activity, value: number | null | undefined) {
@@ -60,7 +60,7 @@ function resetHours() {
           <UCard class="week-card" :ui="{ body: 'p-6 sm:p-8' }">
             <div class="week-overview">
               <div class="week-wheel" :style="{ background: wheelBackground }" role="img" :aria-label="`${formatHours(total)} heures réparties sur ${WEEK_HOURS} heures. Détail par univers dans la légende.`">
-                <div class="wheel-center"><span class="eyebrow">Ma semaine</span><strong>{{ formatHours(total) }}<small>h</small></strong><span>sur {{ WEEK_HOURS }} heures</span><UBadge :color="remaining < 0 ? 'error' : 'primary'" variant="subtle" class="mt-3">{{ remaining < 0 ? 'À rééquilibrer' : 'En exploration' }}</UBadge></div>
+                <div class="wheel-center"><span class="eyebrow">Ma semaine</span><strong>{{ formatHours(total) }}<small>h</small></strong><span>sur {{ WEEK_HOURS }} heures</span><!--<UBadge :color="remaining < 0 ? 'error' : 'primary'" variant="subtle" class="mt-3">{{ remaining < 0 ? 'À rééquilibrer' : 'En exploration' }}</UBadge>!--></div>
               </div>
               <div class="min-w-0">
                 <h3 class="text-lg font-semibold mb-5">La place de chaque univers</h3>
