@@ -90,12 +90,25 @@ function resetHours() {
               <div class="activity-row-heading">
                 <h3 :id="`activity-${activity.id}`" class="font-semibold">{{ activity.label }}</h3>
                 <div class="flex items-center gap-2 shrink-0">
-                  <UInputNumber :model-value="activity.hours" :min="0" :max="WEEK_HOURS" :step="0.5" locale="fr-BE" placeholder="À définir" :aria-labelledby="`activity-${activity.id}`" :aria-describedby="`unit-${activity.id}`" class="w-32" @update:model-value="updateHours(activity, $event)" />
+                  <UInputNumber
+                    :model-value="activity.hours"
+                    color="primary"
+                    highlight
+                    :min="0"
+                    :max="WEEK_HOURS"
+                    :step="0.5"
+                    locale="fr-BE"
+                    placeholder="À définir"
+                    :aria-labelledby="`activity-${activity.id}`"
+                    :aria-describedby="`unit-${activity.id}`"
+                    class="w-32 [--ui-primary:var(--category-color)]"
+                    @update:model-value="updateHours(activity, $event)"
+                  />
                   <span :id="`unit-${activity.id}`" class="text-xs text-muted">h / sem.</span>
                 </div>
               </div>
               <template v-if="activity.id === 'travail'">
-                <URadioGroup :model-value="activity.hours ?? undefined" :items="workOptions" legend="Mes repères de temps de travail" variant="card" orientation="horizontal" class="mb-6" :ui="{ fieldset: 'flex-col sm:flex-row', item: 'flex-1' }" @update:model-value="updateHours(activity, $event)" />
+                <URadioGroup :model-value="activity.hours ?? undefined" :items="workOptions" legend="Mes repères de temps de travail" variant="card" orientation="horizontal" class="mb-6 [--ui-primary:var(--category-color)]" :ui="{ fieldset: 'flex-col sm:flex-row', item: 'flex-1' }" @update:model-value="updateHours(activity, $event)" />
                 <p class="text-sm text-muted mb-5">Ces trois repères reprennent mes valeurs de travail provisoires. Je peux aussi choisir une autre durée.</p>
               </template>
               <USlider v-if="activity.hours !== null" :model-value="activity.hours" :min="0" :max="WEEK_HOURS" :step="0.5" :aria-labelledby="`activity-${activity.id}`" :aria-valuetext="`${formatHours(activity.hours)} heures par semaine`" :ui="{ range: 'bg-(--category-color)', thumb: 'ring-(--category-color)' }" @update:model-value="updateHours(activity, $event)" />
