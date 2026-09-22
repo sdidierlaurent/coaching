@@ -28,8 +28,7 @@ const wheelBackground = computed(() => {
 })
 const summary = [
   { id: 'vue-ensemble', label: 'Ma semaine en couleurs' },
-  ...activityCategories.map(category => ({ id: category.id, label: category.label })),
-  { id: 'poursuivre', label: 'Poursuivre la réflexion' }
+  ...activityCategories.map(category => ({ id: category.id, label: category.label }))
 ]
 
 function updateHours(activity: Activity, value: number | null | undefined) {
@@ -44,10 +43,10 @@ function resetHours() {
 
 <template>
   <UContainer id="haut">
-    <UPageHeader headline="02 / Faire de la place" title="Mes activités, en couleurs" description="Je donne une forme aux activités que je souhaite. En ajustant leur place dans une semaine, je peux explorer une répartition et en discuter avec Sylvie." class="editorial-header">
+    <UPageHeader headline="02 / Faire de la place" title="Mes activités, en couleurs" description="Je donne une forme aux activités que je souhaite. En ajustant leur importance dans une semaine, je peux explorer mes envies." class="editorial-header">
       <div class="flex flex-wrap gap-2 mt-6">
-        <UBadge color="secondary" variant="subtle" size="lg">{{ activities.length }} activités · {{ categories.length }} univers</UBadge>
-        <UBadge color="warning" variant="subtle" size="lg">Durées provisoires</UBadge>
+        <UBadge color="primary" variant="subtle" size="lg">{{ activities.length }} activités</UBadge>
+        <UBadge color="secondary" variant="subtle" size="lg">{{ categories.length }} univers</UBadge>
       </div>
     </UPageHeader>
 
@@ -105,12 +104,12 @@ function resetHours() {
           </UCard>
         </section>
 
-        <section id="poursuivre" aria-labelledby="poursuivre-title" class="reflection-panel">
+        <!-- <section id="poursuivre" aria-labelledby="poursuivre-title" class="reflection-panel">
           <p class="eyebrow">Pour poursuivre avec Sylvie</p>
           <h2 id="poursuivre-title" class="section-title">Ce que cette vue m’aide à questionner.</h2>
           <p class="context-copy">Quelle place ai-je envie de donner à chaque activité ? Quelles durées restent à préciser ? Je peux utiliser cette représentation comme point de départ de notre échange, puis revenir aux personnes ressources qui composent l’autre volet de l’exercice.</p>
           <UButton to="/people" class="mt-6" variant="outline" trailing-icon="i-lucide-arrow-right">Revenir à mes personnes ressources</UButton>
-        </section>
+        </section> -->
       </UPageBody>
     </UPage>
   </UContainer>

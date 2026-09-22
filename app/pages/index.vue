@@ -25,7 +25,7 @@ const sections = [
           Des liens.<br>Des envies.<br><span class="title-accent">Un chemin à dessiner.</span>
         </template>
         <template #description>
-          Je rassemble ici les personnes ressources de mon univers professionnel et les activités auxquelles je souhaite faire une place. Une façon visuelle de nourrir ma réflexion avec Sylvie.
+          Je rassemble ici les personnes ressources de mon univers professionnel et les activités auxquelles je souhaite faire une place. Pour nourrir ma réflexion d'une façon visuelle originale, j’ai choisi d’en faire un site internet.
         </template>
         <template #links>
           <UButton to="/people" size="xl" trailing-icon="i-lucide-arrow-up-right">Mes personnes ressources</UButton>
@@ -50,7 +50,7 @@ const sections = [
       </UPageHero>
     </div>
 
-    <UContainer>
+    <!-- <UContainer>
       <UPage class="notebook-layout">
         <template #left><PageSommaire :items="sections" /></template>
         <UPageBody class="space-y-16">
@@ -96,6 +96,6 @@ const sections = [
           </section>
         </UPageBody>
       </UPage>
-    </UContainer>
+    </UContainer> -->
   </div>
 </template>

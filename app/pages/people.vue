@@ -65,9 +65,9 @@ const summary = computed(() => [
           </UPageGrid>
         </section>
 
-        <UPageCard variant="soft" orientation="horizontal" title="Et les activités auxquelles je souhaite faire une place ?" description="Je poursuis l’exercice avec une autre perspective : le temps de ma semaine.">
+        <!-- <UPageCard variant="soft" orientation="horizontal" title="Et les activités auxquelles je souhaite faire une place ?" description="Je poursuis l’exercice avec une autre perspective : le temps de ma semaine.">
           <UButton to="/activity" trailing-icon="i-lucide-arrow-right" class="justify-center">Explorer mes activités</UButton>
-        </UPageCard>
+        </UPageCard> -->
       </UPageBody>
     </UPage>
   </UContainer>
