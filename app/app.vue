@@ -11,7 +11,11 @@ const items = computed<NavigationMenuItem[]>(() => [
 
 useHead({
   htmlAttrs: { lang: 'fr' },
-  titleTemplate: '%s · Mon carnet de coaching'
+  titleTemplate: '%s · Mon carnet de coaching',
+  link: [
+    { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico?v=2', sizes: '16x16 32x32 48x48' },
+    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg', sizes: 'any' }
+  ]
 })
 </script>
 
