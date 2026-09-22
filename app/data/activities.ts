@@ -18,17 +18,19 @@ export interface Activity {
 
 // Durées reprises de la page d'origine. La lecture n'y était pas chiffrée.
 export const initialActivities: Activity[] = [
-  { id: 'papa', category: 'social', label: 'Papa', hours: 14 },
-  { id: 'famille', category: 'social', label: 'Famille', hours: 10 },
+  { id: 'papa', category: 'social', label: 'Papa', hours: 7 },
+  { id: 'famille', category: 'social', label: 'Famille', hours: 3 },
   { id: 'amis', category: 'social', label: 'Amis', hours: 4 },
-  { id: 'vie-sentimentale', category: 'social', label: 'Vie sentimentale', hours: 14 },
+  { id: 'vie-sentimentale', category: 'social', label: 'Vie sentimentale', hours: null },
   { id: 'jeu-de-role', category: 'loisirs', label: 'Jeu de rôle', hours: 2 },
   { id: 'ecriture', category: 'loisirs', label: 'Écriture', hours: 1.5 },
-  { id: 'lecture', category: 'loisirs', label: 'Lecture', hours: null },
   { id: 'culture', category: 'loisirs', label: 'Sorties culturelles / spectacles', hours: 1 },
+  { id: 'film', category: 'loisirs', label: 'Films, séries, vidéos', hours: 7 },
+  { id: 'social-media', category: 'loisirs', label: 'Réseaux sociaux', hours: 10 },
+  { id: 'lecture', category: 'loisirs', label: 'Lecture', hours: null },
   { id: 'sante-mentale', category: 'sante', label: 'Santé mentale', hours: 1 },
-  { id: 'sport', category: 'sante', label: 'Sport, Activité physique', hours: 1 },
-  { id: 'repos', category: 'sante', label: 'Repos / dormir', hours: 40 },
+  { id: 'sport', category: 'sante', label: 'Sport, Activité physique', hours: null },
+  { id: 'repos', category: 'sante', label: 'Repos / dormir', hours: 49 },
   { id: 'travail', category: 'travail', label: 'Travail', hours: 32 },
   { id: 'quotidien', category: 'corvees', label: 'Quotidien (ménage, administratif personnel…)', hours: 21 }
 ]

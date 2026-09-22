@@ -19,38 +19,38 @@ const sections = [
     <div class="home-hero">
       <UPageHero orientation="horizontal" :ui="{ container: 'py-14 sm:py-20 lg:py-24 gap-12', title: 'hero-title', description: 'text-base sm:text-lg max-w-xl', links: 'gap-3' }">
         <template #headline>
-          <UBadge color="primary" variant="subtle" size="lg">Mon carnet de coaching · avec Sylvie</UBadge>
+          <UBadge color="primary" variant="subtle" size="lg">Mon carnet - coaching</UBadge>
         </template>
         <template #title>
           Des liens.<br>Des envies.<br><span class="title-accent">Un chemin à dessiner.</span>
         </template>
         <template #description>
-          Je rassemble ici les personnes ressources de mon univers professionnel et les activités auxquelles je souhaite faire une place. Une façon visuelle de nourrir ma réflexion avec Sylvie.
+          Je rassemble ici les personnes ressources de mon univers professionnel et les activités auxquelles je souhaite faire une place. Pour nourrir ma réflexion d'une façon visuelle originale, j’ai choisi d’en faire un site internet.
         </template>
         <template #links>
           <UButton to="/people" size="xl" trailing-icon="i-lucide-arrow-up-right">Mes personnes ressources</UButton>
           <UButton to="/activity" size="xl" color="neutral" variant="outline" trailing-icon="i-lucide-arrow-right">Mes activités</UButton>
         </template>
         <div class="exploration-board" aria-label="Les deux volets de mon exercice">
-          <div class="board-caption"><span class="status-dot" /> Réflexion en cours <span aria-hidden="true">↗</span></div>
-          <div class="board-card board-people">
+          <div class="board-caption"><span class="status-dot" /> Réflexion en cours</div>
+          <ULink to="/people" raw class="board-card board-people" aria-label="Découvrir mes personnes ressources">
             <div class="flex items-center justify-between"><span class="eyebrow">01 / M’entourer</span><span class="board-symbol" aria-hidden="true">✳</span></div>
             <h2>Les personnes<br>ressources</h2>
             <p>{{ peopleCount }} personnes · {{ peopleSections.length }} domaines</p>
-            <div class="board-chips"><span>Design</span><span>Formation</span><span>Inspiration</span></div>
-          </div>
-          <div class="board-card board-activities">
+            <div class="board-chips"><span>Frontend</span><span>Formation</span><span>Inspiration</span></div>
+          </ULink>
+          <ULink to="/activity" raw class="board-card board-activities" aria-label="Découvrir mes activités">
             <div class="flex items-center justify-between"><span class="eyebrow">02 / Faire de la place</span><span class="board-symbol" aria-hidden="true">◷</span></div>
             <h2>Les activités<br>que je souhaite</h2>
             <p>{{ initialActivities.length }} activités · {{ activityCategories.length }} univers</p>
             <div class="board-palette" aria-hidden="true"><span v-for="category in activityCategories" :key="category.id" :style="{ background: category.color }" /></div>
-          </div>
+          </ULink>
           <p class="board-note">Mon point de départ, pas un point final.</p>
         </div>
       </UPageHero>
     </div>
 
-    <UContainer>
+    <!-- <UContainer>
       <UPage class="notebook-layout">
         <template #left><PageSommaire :items="sections" /></template>
         <UPageBody class="space-y-16">
@@ -96,6 +96,6 @@ const sections = [
           </section>
         </UPageBody>
       </UPage>
-    </UContainer>
+    </UContainer> -->
   </div>
 </template>
