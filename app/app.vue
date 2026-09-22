@@ -1,30 +1,48 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
+import { fr } from '@nuxt/ui/locale'
 
-// const route = useRoute()
-
+const route = useRoute()
 const items = computed<NavigationMenuItem[]>(() => [
-  {
-    label: 'Activités',
-    to: '/activity',
-    // active: route.path.startsWith('/docs/getting-started')
-  },
-  {
-    label: 'Personnes ressource',
-    to: '/people',
-    // active: route.path.startsWith('/docs/components')
-  },
+  { label: 'Mon carnet', to: '/', active: route.path === '/' },
+  { label: 'Personnes ressources', to: '/people', active: route.path === '/people' },
+  { label: 'Mes activités', to: '/activity', active: route.path === '/activity' }
 ])
+
+useHead({
+  htmlAttrs: { lang: 'fr' },
+  titleTemplate: '%s · Mon carnet de coaching'
+})
 </script>
+
 <template>
-  <UApp>
-    <UHeader title="Coaching avec Sylvie">
-      <UNavigationMenu :items="items" />
+  <UApp :locale="fr">
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <UHeader title="Mon carnet de coaching" :menu="{ title: 'Navigation du carnet', description: 'Accéder à l’accueil, aux personnes ressources et aux activités.' }">
+      <template #title>
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span class="brand-name">Mon carnet<span>Coaching avec Sylvie</span></span>
+      </template>
+      <UNavigationMenu :items="items" aria-label="Navigation principale" />
+      <template #right>
+        <UColorModeButton />
+      </template>
+      <template #body>
+        <UNavigationMenu :items="items" orientation="vertical" aria-label="Navigation principale" />
+      </template>
     </UHeader>
-    <UMain>
-      <NuxtLayout>
-        <NuxtPage />
-      </NuxtLayout>
+    <UMain id="contenu" tabindex="-1">
+      <NuxtPage />
     </UMain>
+    <UFooter class="site-footer">
+      <template #left>
+        <p class="text-sm text-muted">Un espace pour réfléchir, explorer et en parler avec Sylvie.</p>
+      </template>
+      <template #right>
+        <UButton to="https://www.instagram.com/sylviegrf/" target="_blank" rel="noopener noreferrer" color="neutral" variant="ghost" trailing-icon="i-lucide-arrow-up-right">
+          Sylvie sur Instagram
+        </UButton>
+      </template>
+    </UFooter>
   </UApp>
 </template>

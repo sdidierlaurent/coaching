@@ -55,7 +55,7 @@ export const admin = ref([
   {
     name: 'Fabienne ROUFFIN',
     description: 'Product Manager',
-    to: 'https://www.linkedin.com/in/ma%C3%ABva-berthelot-61382354/',
+    to: '',
     avatar: {
       src: '',
       alt: 'Fabienne ROUFFIN',
