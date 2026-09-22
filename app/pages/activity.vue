@@ -28,8 +28,7 @@ const wheelBackground = computed(() => {
 })
 const summary = [
   { id: 'vue-ensemble', label: 'Ma semaine en couleurs' },
-  ...activityCategories.map(category => ({ id: category.id, label: category.label })),
-  { id: 'poursuivre', label: 'Poursuivre la réflexion' }
+  ...activityCategories.map(category => ({ id: category.id, label: category.label, color: category.color }))
 ]
 
 function updateHours(activity: Activity, value: number | null | undefined) {
@@ -44,10 +43,10 @@ function resetHours() {
 
 <template>
   <UContainer id="haut">
-    <UPageHeader headline="02 / Faire de la place" title="Mes activités, en couleurs" description="Je donne une forme aux activités que je souhaite. En ajustant leur place dans une semaine, je peux explorer une répartition et en discuter avec Sylvie." class="editorial-header">
+    <UPageHeader headline="02 / Faire de la place" title="Mes activités, en couleurs" description="Je donne une forme aux activités que je souhaite. En ajustant leur importance dans une semaine, je peux explorer mes envies." class="editorial-header">
       <div class="flex flex-wrap gap-2 mt-6">
-        <UBadge color="secondary" variant="subtle" size="lg">{{ activities.length }} activités · {{ categories.length }} univers</UBadge>
-        <UBadge color="warning" variant="subtle" size="lg">Durées provisoires</UBadge>
+        <UBadge color="primary" variant="subtle" size="lg">{{ activities.length }} activités</UBadge>
+        <UBadge color="secondary" variant="subtle" size="lg">{{ categories.length }} univers</UBadge>
       </div>
     </UPageHeader>
 
@@ -61,7 +60,7 @@ function resetHours() {
           <UCard class="week-card" :ui="{ body: 'p-6 sm:p-8' }">
             <div class="week-overview">
               <div class="week-wheel" :style="{ background: wheelBackground }" role="img" :aria-label="`${formatHours(total)} heures réparties sur ${WEEK_HOURS} heures. Détail par univers dans la légende.`">
-                <div class="wheel-center"><span class="eyebrow">Ma semaine</span><strong>{{ formatHours(total) }}<small>h</small></strong><span>sur {{ WEEK_HOURS }} heures</span><UBadge :color="remaining < 0 ? 'error' : 'primary'" variant="subtle" class="mt-3">{{ remaining < 0 ? 'À rééquilibrer' : 'En exploration' }}</UBadge></div>
+                <div class="wheel-center"><span class="eyebrow">Ma semaine</span><strong>{{ formatHours(total) }}<small>h</small></strong><span>sur {{ WEEK_HOURS }} heures</span><!--<UBadge :color="remaining < 0 ? 'error' : 'primary'" variant="subtle" class="mt-3">{{ remaining < 0 ? 'À rééquilibrer' : 'En exploration' }}</UBadge>!--></div>
               </div>
               <div class="min-w-0">
                 <h3 class="text-lg font-semibold mb-5">La place de chaque univers</h3>
@@ -91,12 +90,25 @@ function resetHours() {
               <div class="activity-row-heading">
                 <h3 :id="`activity-${activity.id}`" class="font-semibold">{{ activity.label }}</h3>
                 <div class="flex items-center gap-2 shrink-0">
-                  <UInputNumber :model-value="activity.hours" :min="0" :max="WEEK_HOURS" :step="0.5" locale="fr-BE" placeholder="À définir" :aria-labelledby="`activity-${activity.id}`" :aria-describedby="`unit-${activity.id}`" class="w-32" @update:model-value="updateHours(activity, $event)" />
+                  <UInputNumber
+                    :model-value="activity.hours"
+                    color="primary"
+                    highlight
+                    :min="0"
+                    :max="WEEK_HOURS"
+                    :step="0.5"
+                    locale="fr-BE"
+                    placeholder="À définir"
+                    :aria-labelledby="`activity-${activity.id}`"
+                    :aria-describedby="`unit-${activity.id}`"
+                    class="w-32 [--ui-primary:var(--category-color)]"
+                    @update:model-value="updateHours(activity, $event)"
+                  />
                   <span :id="`unit-${activity.id}`" class="text-xs text-muted">h / sem.</span>
                 </div>
               </div>
               <template v-if="activity.id === 'travail'">
-                <URadioGroup :model-value="activity.hours ?? undefined" :items="workOptions" legend="Mes repères de temps de travail" variant="card" orientation="horizontal" class="mb-6" :ui="{ fieldset: 'flex-col sm:flex-row', item: 'flex-1' }" @update:model-value="updateHours(activity, $event)" />
+                <URadioGroup :model-value="activity.hours ?? undefined" :items="workOptions" legend="Mes repères de temps de travail" variant="card" orientation="horizontal" class="mb-6 [--ui-primary:var(--category-color)]" :ui="{ fieldset: 'flex-col sm:flex-row', item: 'flex-1' }" @update:model-value="updateHours(activity, $event)" />
                 <p class="text-sm text-muted mb-5">Ces trois repères reprennent mes valeurs de travail provisoires. Je peux aussi choisir une autre durée.</p>
               </template>
               <USlider v-if="activity.hours !== null" :model-value="activity.hours" :min="0" :max="WEEK_HOURS" :step="0.5" :aria-labelledby="`activity-${activity.id}`" :aria-valuetext="`${formatHours(activity.hours)} heures par semaine`" :ui="{ range: 'bg-(--category-color)', thumb: 'ring-(--category-color)' }" @update:model-value="updateHours(activity, $event)" />
@@ -105,12 +117,12 @@ function resetHours() {
           </UCard>
         </section>
 
-        <section id="poursuivre" aria-labelledby="poursuivre-title" class="reflection-panel">
+        <!-- <section id="poursuivre" aria-labelledby="poursuivre-title" class="reflection-panel">
           <p class="eyebrow">Pour poursuivre avec Sylvie</p>
           <h2 id="poursuivre-title" class="section-title">Ce que cette vue m’aide à questionner.</h2>
           <p class="context-copy">Quelle place ai-je envie de donner à chaque activité ? Quelles durées restent à préciser ? Je peux utiliser cette représentation comme point de départ de notre échange, puis revenir aux personnes ressources qui composent l’autre volet de l’exercice.</p>
           <UButton to="/people" class="mt-6" variant="outline" trailing-icon="i-lucide-arrow-right">Revenir à mes personnes ressources</UButton>
-        </section>
+        </section> -->
       </UPageBody>
     </UPage>
   </UContainer>
