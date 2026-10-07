@@ -6,7 +6,8 @@ const route = useRoute()
 const items = computed<NavigationMenuItem[]>(() => [
   { label: 'Mon carnet', to: '/', active: route.path === '/' },
   { label: 'Personnes ressources', to: '/people', active: route.path === '/people' },
-  { label: 'Mes activités', to: '/activity', active: route.path === '/activity' }
+  { label: 'Mes activités', to: '/activity', active: route.path === '/activity' },
+  { label: 'Entreprendre', to: '/entreprendre', active: route.path === '/entreprendre' }
 ])
 
 useHead({
@@ -22,7 +23,7 @@ useHead({
 <template>
   <UApp :locale="fr">
     <a class="skip-link" href="#contenu">Aller au contenu</a>
-    <UHeader title="Mon carnet de coaching" :menu="{ title: 'Navigation du carnet', description: 'Accéder à l’accueil, aux personnes ressources et aux activités.' }">
+    <UHeader title="Mon carnet de coaching" :menu="{ title: 'Navigation du carnet', description: 'Accéder à l’accueil, aux personnes ressources, aux activités et aux repères pour entreprendre.' }">
       <template #title>
         <span class="brand-mark" aria-hidden="true">✳</span>
         <span class="brand-name">Mon carnet<span>Coaching avec Sylvie</span></span>
